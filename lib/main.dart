@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quiz_app/answer.dart';
 import 'package:quiz_app/questio.dart';
 
 void main() => runApp(MyApp());
@@ -11,19 +12,25 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   var queIndex = 0;
 
-  void answerQuestion() => print("Answer choosen!");
+  void answerQuestion() {
+    setState(
+      () {
+        queIndex = queIndex + 1;
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     var que = [
-      "What's your favourate color?",
-      "What's your favourate animal?",
-      "What's your favourate color?",
-      "What's your favourate animal?",
-      "What's your favourate color?",
-      "What's your favourate animal?",
-      "What's your favourate color?",
-      "What's your favourate animal?",
+      "What's your favourite color?",
+      "What's your favourite animal?",
+      "What's your favourite color?",
+      "What's your favourite animal?",
+      "What's your favourite color?",
+      "What's your favourite animal?",
+      "What's your favourite color?",
+      "What's your favourite animal?",
     ];
     return MaterialApp(
       home: Scaffold(
@@ -38,27 +45,10 @@ class _MyAppState extends State<MyApp> {
                 SizedBox(height: 20),
                 Question(que[queIndex]),
                 SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: answerQuestion,
-                  child: Text("Ans 1"),
-                ),
-                ElevatedButton(
-                  onPressed: () => debugPrint("Button 1 pressed"),
-                  child: Text("Ans 2"),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      queIndex = queIndex + 1;
-                    });
-                    debugPrint("Button 2 pressed");
-                  },
-                  child: Text("Ans 3"),
-                ),
-                ElevatedButton(
-                  onPressed: answerQuestion,
-                  child: Text("Ans 4"),
-                ),
+                Answer(selectHandler: answerQuestion),
+                Answer(selectHandler: answerQuestion),
+                Answer(selectHandler: answerQuestion),
+                Answer(selectHandler: answerQuestion),
               ],
             ),
           ),
@@ -67,3 +57,5 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
+
+// Answer(slectHandler: _answerQuestion),
