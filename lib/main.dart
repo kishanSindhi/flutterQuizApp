@@ -23,14 +23,18 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     var que = [
-      "What's your favourite color?",
-      "What's your favourite animal?",
-      "What's your favourite color?",
-      "What's your favourite animal?",
-      "What's your favourite color?",
-      "What's your favourite animal?",
-      "What's your favourite color?",
-      "What's your favourite animal?",
+      {
+        "questionText": "What's your favourite color?",
+        "answerText": ["Red", "Black", "Yellow", "Orange"],
+      },
+      {
+        "questionText": "What's your favourite animal?",
+        "answerText": ["Rabbit", "Elephant", "Lion", "Tiger"],
+      },
+      {
+        "questionText": "Which is your favourite MCU character?",
+        "answerText": ["Thor", "Black Widow", "Cap", "Tony Stark"],
+      },
     ];
     return MaterialApp(
       home: Scaffold(
@@ -42,13 +46,15 @@ class _MyAppState extends State<MyApp> {
           child: SafeArea(
             child: Column(
               children: [
+                SizedBox(height: 15),
+                Question(que[queIndex]["questionText"] as String),
                 SizedBox(height: 20),
-                Question(que[queIndex]),
-                SizedBox(height: 20),
-                Answer(selectHandler: answerQuestion),
-                Answer(selectHandler: answerQuestion),
-                Answer(selectHandler: answerQuestion),
-                Answer(selectHandler: answerQuestion),
+                ...(que[queIndex]["answerText"] as List<String>).map((answer) {
+                  return Answer(
+                    selectHandler: answerQuestion,
+                    answerText: answer,
+                  );
+                }).toList()
               ],
             ),
           ),
@@ -57,5 +63,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-
-// Answer(slectHandler: _answerQuestion),
