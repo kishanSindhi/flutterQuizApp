@@ -12,30 +12,31 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   final _que = [
     {
-      "questionText": "What's your favourite color?",
+      "questionText": "Who is PM of India?",
       "answerText": [
-        {"text": "Black", "score": 10},
-        {"text": "Red", "score": 5},
-        {"text": "Green", "score": 3},
-        {"text": "White", "score": 1},
+        {"text": "Rahul Gandhi", "score": 0},
+        {"text": "Narendra Modi", "score": 1},
+        {"text": "Yogi Aditya Nath", "score": 0},
+        {"text": "Sonia Gandhi", "score": 0},
       ],
     },
     {
-      "questionText": "What's your favourite animal?",
+      "questionText": "Currency of India is...",
       "answerText": [
-        {"text": "Rabbit", "score": 10},
-        {"text": "Lion", "score": 5},
-        {"text": "Tiger", "score": 3},
-        {"text": "Peacock", "score": 1},
+        {"text": "Dollar", "score": 0},
+        {"text": "Yen", "score": 0},
+        {"text": "Rupees", "score": 1},
+        {"text": "Pound", "score": 0},
       ],
     },
     {
-      "questionText": "Which is your favourite MCU character?",
+      "questionText":
+          "Find the similar relation: Court : Justice :: School : ?",
       "answerText": [
-        {"text": "RDJ", "score": 1},
-        {"text": "Cap", "score": 1},
-        {"text": "Black Widow", "score": 1},
-        {"text": "Hulk", "score": 1},
+        {"text": "Teacher", "score": 0},
+        {"text": "Headmaster", "score": 0},
+        {"text": "Education", "score": 1},
+        {"text": "Student", "score": 0},
       ],
     },
   ];

@@ -7,16 +7,7 @@ class Result extends StatelessWidget {
   const Result(this.resultScore, this.resetHandler);
 
   String get resultPhrase {
-    String resultText;
-    if (resultScore <= 8) {
-      resultText = "You are awesome and innocent";
-    } else if (resultScore <= 12) {
-      resultText = "You are pretty likeable";
-    } else if (resultScore <= 16) {
-      resultText = "You are strange";
-    } else {
-      resultText = "You are so bad";
-    }
+    String resultText = "Your score is ";
     return resultText;
   }
 
@@ -27,7 +18,7 @@ class Result extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            "$resultPhrase because your score is $resultScore",
+            "$resultPhrase$resultScore",
             textAlign: TextAlign.center,
             style: TextStyle(
               fontWeight: FontWeight.bold,
