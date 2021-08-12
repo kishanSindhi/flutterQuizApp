@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_app/answer.dart';
-import 'package:quiz_app/questio.dart';
+import 'package:quiz_app/quiz.dart';
+import 'package:quiz_app/result.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,30 +10,54 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final que = [
+  final _que = [
     {
       "questionText": "What's your favourite color?",
-      "answerText": ["Red", "Black", "Yellow", "Orange"],
+      "answerText": [
+        {"text": "Black", "score": 10},
+        {"text": "Red", "score": 5},
+        {"text": "Green", "score": 3},
+        {"text": "White", "score": 1},
+      ],
     },
     {
       "questionText": "What's your favourite animal?",
-      "answerText": ["Rabbit", "Elephant", "Lion", "Tiger"],
+      "answerText": [
+        {"text": "Rabbit", "score": 10},
+        {"text": "Lion", "score": 5},
+        {"text": "Tiger", "score": 3},
+        {"text": "Peacock", "score": 1},
+      ],
     },
     {
       "questionText": "Which is your favourite MCU character?",
-      "answerText": ["Thor", "Black Widow", "Cap", "Tony Stark"],
+      "answerText": [
+        {"text": "RDJ", "score": 1},
+        {"text": "Cap", "score": 1},
+        {"text": "Black Widow", "score": 1},
+        {"text": "Hulk", "score": 1},
+      ],
     },
   ];
   var queIndex = 0;
+  var _totalScore = 0;
 
-  void answerQuestion() {
-    if (queIndex < que.length) {
+  void _resetQuiz() {
+    setState(() {
+      queIndex = 0;
+      _totalScore = 0;
+    });
+  }
+
+  void answerQuestion(int score) {
+    _totalScore += score;
+    if (queIndex < _que.length) {
       setState(
         () {
           queIndex = queIndex + 1;
         },
       );
-    } else {}
+    }
   }
 
   @override
@@ -46,28 +70,13 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Center(
           child: SafeArea(
-            child: (queIndex < que.length)
-                ? Column(
-                    children: [
-                      SizedBox(height: 15),
-                      Question(que[queIndex]["questionText"] as String),
-                      SizedBox(height: 20),
-                      ...(que[queIndex]["answerText"] as List<String>)
-                          .map((answer) {
-                        return Answer(
-                          selectHandler: answerQuestion,
-                          answerText: answer,
-                        );
-                      }).toList()
-                    ],
+            child: (queIndex < _que.length)
+                ? Quiz(
+                    queIndex: queIndex,
+                    answerQuestion: answerQuestion, // 69th line
+                    que: _que,
                   )
-                : Text(
-                    "Done",
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 30,
-                    ),
-                  ),
+                : Result(_totalScore, _resetQuiz),
           ),
         ),
       ),

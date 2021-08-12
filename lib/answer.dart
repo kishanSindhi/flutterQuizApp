@@ -4,10 +4,10 @@ class Answer extends StatelessWidget {
   final void Function() selectHandler;
   final String answerText;
 
-  const Answer({
-    required this.selectHandler,
-    required this.answerText,
-  });
+  const Answer(
+    this.selectHandler,
+    this.answerText,
+  );
 
   @override
   Widget build(BuildContext context) {
